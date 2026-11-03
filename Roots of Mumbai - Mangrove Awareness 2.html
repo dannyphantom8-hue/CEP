@@ -59,4 +59,259 @@ nav button{padding:6px 12px;font-size:.9rem;background:transparent;color:var(--i
 .card:hover{transform:translateY(-4px)}.card p{margin:0;font-size:1rem}
 .quiz{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;max-width:640px}
 .quiz .opt{display:block;width:100%;text-align:left;margin:8px 0;background:var(--bg);color:var(--ink)!important;border:1px solid var(--line)}
-.quiz .opt:hover{border-color:
+.quiz .opt:hover{border-color:var(--tide)}.quiz .ok{background:var(--tide)!important;color:#fff!important}.quiz .no{border-color:var(--accent)!important}
+#top{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));display:none;border-radius:50%;width:44px;height:44px;padding:0}
+
+#pg{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:20}
+.bird{fill:none;stroke:#35514a;stroke-width:2.5;stroke-linecap:round;animation:fly 26s linear infinite}
+.bird.b2{animation-duration:34s;animation-delay:-12s}
+@keyframes fly{from{transform:translateX(-80px)}to{transform:translateX(900px)}}
+.myths{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.myth{text-align:left;background:var(--panel);color:var(--ink)!important;border:1px solid var(--line);border-radius:12px;padding:18px;font:inherit;min-height:150px}
+.myth b{display:block;font:700 .8rem var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.myth span{font-size:1rem;line-height:1.5}.myth[aria-pressed="true"]{border-color:var(--tide);background:var(--bg)}
+.myth[aria-pressed="true"] b{color:var(--tide)}
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+#cert{display:none;margin-top:22px;max-width:560px;text-align:center;border:3px double var(--tide);border-radius:12px;padding:30px 22px;background:var(--panel)}
+#cert h3{font-size:1.5rem}#cert p{margin:.4em 0}
+@media print{body *{visibility:hidden}#cert,#cert *{visibility:visible}#cert{position:absolute;left:0;top:0;width:100%;color:#000;background:#fff}}
+@media (prefers-reduced-motion:reduce){.bird{animation:none}}
+
+.map{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:28px}
+.map svg{width:100%;height:auto;display:block;max-width:640px;margin:0 auto}
+.map .sea{fill:var(--water);opacity:.28}.map .land{fill:var(--panel);stroke:var(--line);stroke-width:2}.map .land2{fill:var(--bg);stroke:var(--line);stroke-width:2}
+.map text{font:600 13px var(--head);fill:var(--ink)}.map .lbl{font-weight:500;font-size:12px;fill:var(--mud)}
+.pin{cursor:pointer}.pin circle{fill:var(--accent);stroke:var(--bg);stroke-width:3;transition:r .2s}.pin:hover circle,.pin:focus circle,.pin.on circle{r:13;fill:var(--tide)}
+.pin:focus{outline:none}.pin:focus-visible circle{stroke:var(--ink)}
+#mi{margin-top:10px;min-height:5.5em}#mi h3{margin-bottom:.2em}#mi p{margin:.2em 0}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.gal figure{margin:0}.gal img{width:100%;height:170px;object-fit:cover;border-radius:10px;cursor:zoom-in;display:block}
+.gal figcaption{font-size:.9rem;margin-top:4px}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:30;padding:20px;cursor:zoom-out}
+#lb img{max-width:100%;max-height:100%;border-radius:8px}
+.gal svg{width:100%;height:auto;display:block;border-radius:10px}
+</style>
+</head>
+<body>
+<div id="pg"></div>
+<div class="wrap">
+<nav><b>Roots of Mumbai</b><a href="#why">Why they matter</a><a href="#threats">Threats</a><a href="#myths">Myths</a><a href="#spot">Who lives here</a><a href="#visit">Visit</a><a href="#gallery">Gallery</a><a href="#quiz">Quiz</a><a href="#act">Take part</a><button id="th" type="button" aria-label="Switch light or dark mode">Theme</button></nav>
+
+<header class="hero">
+<h1>Mumbai's coast has a root system.</h1>
+<p class="lead">Mangrove forests line the creeks and shores of Mumbai. They soften storm waves, shelter young fish and hold the mud together. Move the tide below to see what happens among the roots.</p>
+<div class="tide">
+<svg id="scene" viewBox="0 0 800 340" role="img" aria-label="Illustration of mangrove roots with a water level that changes with the tide">
+<rect width="800" height="340" fill="#dbe9e3"/>
+<circle cx="680" cy="60" r="28" fill="#f0c75e"/>
+<g fill="#2f6b4f"><ellipse cx="200" cy="70" rx="120" ry="55"/><ellipse cx="400" cy="55" rx="130" ry="60"/><ellipse cx="600" cy="80" rx="110" ry="50"/></g>
+<g stroke="#4a3a2c" stroke-width="7" fill="none" stroke-linecap="round">
+<path d="M200 110 V150 M200 150 C180 190 150 230 135 285 M200 150 C200 200 205 240 210 285 M200 150 C225 190 255 230 270 285"/>
+<path d="M400 100 V145 M400 145 C375 190 345 235 330 285 M400 145 C400 200 402 240 405 285 M400 145 C430 190 460 235 475 285"/>
+<path d="M600 125 V160 M600 160 C580 195 555 235 540 285 M600 160 C602 200 606 240 610 285 M600 160 C625 195 650 235 665 285"/>
+</g>
+<g class="bird" style="transform-box:fill-box"><path d="M0 40 q10 -10 20 0 q10 -10 20 0"/></g><g class="bird b2"><path d="M0 85 q8 -8 16 0 q8 -8 16 0"/></g>
+<g id="crabs" fill="#a04a2d"><ellipse cx="250" cy="293" rx="12" ry="7"/><ellipse cx="520" cy="293" rx="12" ry="7"/><ellipse cx="365" cy="293" rx="12" ry="7"/></g>
+<g id="fish" fill="#e8b84a" opacity="0"><path d="M240 230 q18 -12 36 0 q-18 12 -36 0z M500 215 q18 -12 36 0 q-18 12 -36 0z M370 245 q18 -12 36 0 q-18 12 -36 0z"/></g>
+<rect id="mud" y="285" width="800" height="55" fill="#5b4a3a"/>
+<rect id="water" x="0" y="285" width="800" height="200" fill="#2d7c78" opacity=".62"/>
+</svg>
+<label for="t">Low tide <input id="t" type="range" min="0" max="100" value="0" aria-describedby="cap"> High tide</label>
+<p id="cap" aria-live="polite"></p>
+</div>
+<div class="facts"><div><b>Roots</b>slow waves and trap silt</div><div><b>Nursery</b>for fish, prawns and crabs</div><div><b>Flyway</b>stopover for migratory birds</div><div><b>Carbon</b>stored in the mud</div></div>
+</header>
+
+<section id="why">
+<h2>Why the roots matter</h2>
+<div class="cols">
+<div><h3>A wave breaker</h3><p>Dense, tangled roots slow incoming water. Coasts with mangroves take less damage during cyclones and storm surges, which matters in a city built on reclaimed islands.</p></div>
+<div><h3>A fish nursery</h3><p>Young fish, prawns and crabs hide among the roots until they are big enough for open water. Many of the fish that reach local markets began life here.</p></div>
+<div><h3>A carbon store</h3><p>Mangrove mud locks away carbon for a very long time. Cutting a mangrove releases part of that store back into the air.</p></div>
+<div><h3>A bird habitat</h3><p>Creeks near the city, such as Thane Creek, draw large flocks of migratory birds, including flamingos, to feed on the mudflats.</p></div>
+</div>
+</section>
+
+<section id="threats">
+<h2>What is hurting them</h2>
+<ul class="threats">
+<li>Land cleared or filled in for construction and roads</li>
+<li>Garbage and plastic washing in with the tide and tangling in the roots</li>
+<li>Sewage and untreated waste flowing into creeks</li>
+<li>Debris dumping that buries the breathing roots</li>
+</ul>
+<p>Most of this is visible to anyone who walks along a creek. That is why local people who notice and report damage matter so much.</p>
+</section>
+
+<section id="myths" class="rv">
+<h2>Myth or fact?</h2>
+<p>Tap a card to reveal the fact.</p>
+<div class="myths">
+<button type="button" class="myth" aria-pressed="false" data-f="They are among the most productive coastal habitats, sheltering fish, crabs, birds and more."><b>Myth</b><span>Mangroves are just smelly, useless mud.</span></button>
+<button type="button" class="myth" aria-pressed="false" data-f="Mangroves grow in salty, tidal mud. Other trees often fail there, and planting in the wrong place can harm mudflats."><b>Myth</b><span>Planting any tree on the coast helps the shore.</span></button>
+<button type="button" class="myth" aria-pressed="false" data-f="Small losses add up. Patches get cut off from tidal water and shrink over time."><b>Myth</b><span>Cutting a few mangroves does not matter.</span></button>
+<button type="button" class="myth" aria-pressed="false" data-f="They soften storm waves for everyone nearby and store carbon, so the benefit is shared by the whole city."><b>Myth</b><span>Mangroves only matter to fishers.</span></button>
+</div>
+</section>
+
+<section id="spot">
+<h2>Who lives here</h2>
+<table class="spot">
+<tr><th>Mudskipper</th><td>A fish that climbs out onto the mud at low tide and breathes air through its skin.</td></tr>
+<tr><th>Fiddler crab</th><td>Males wave one oversized claw to attract mates. Look for them on exposed mud.</td></tr>
+<tr><th>Flamingo</th><td>Flocks feed in shallow creeks and mudflats in the cooler months.</td></tr>
+<tr><th>Kingfisher</th><td>Perches on branches over the water and dives for small fish.</td></tr>
+<tr><th>Avicennia (grey mangrove)</th><td>A common local tree. Its pencil-like roots poke up from the mud to take in air.</td></tr>
+</table>
+</section>
+
+<section id="visit" class="rv">
+<h2>Where to see mangroves near Mumbai</h2>
+<div class="cards">
+<div class="card"><h3>Sewri mudflats</h3><p>Known for flocks of flamingos in the cooler months. Bring binoculars and keep a respectful distance.</p></div>
+<div class="card"><h3>Thane Creek</h3><p>A creek with wide mangrove belts and a protected flamingo area on its shores.</p></div>
+<div class="card"><h3>Mahim Nature Park</h3><p>A city green space beside a mangrove-lined creek. A gentle place to start learning species.</p></div>
+<div class="card"><h3>Airoli and Gorai creeks</h3><p>Creek-side stretches where guided walks and boat trips are sometimes offered. Check current timings first.</p></div>
+</div>
+<p>Rules for any visit: stay on paths, never pick roots or branches, carry out all litter, and keep noise low near birds.</p>
+
+<div class="map">
+<svg viewBox="0 0 600 420" role="group" aria-label="Simple schematic map of mangrove places around Mumbai. Not to scale.">
+<rect class="sea" width="600" height="420"/>
+<polygon class="land2" points="420,0 600,0 600,420 400,420 388,300 396,150"/>
+<polygon class="land" points="230,20 330,20 352,120 342,250 322,330 282,400 242,400 216,300 202,180"/>
+<text x="40" y="210" class="lbl">Arabian Sea</text>
+<text x="498" y="210" class="lbl">Mainland</text>
+<text x="350" y="395" class="lbl" style="font-size:11px">Schematic only, not to scale</text>
+<g class="pin" tabindex="0" role="button" data-i="0" aria-label="Gorai Creek"><circle cx="212" cy="55" r="9"/><text x="228" y="59" style="pointer-events:none">Gorai</text></g>
+<g class="pin" tabindex="0" role="button" data-i="1" aria-label="Airoli"><circle cx="410" cy="110" r="9"/><text x="426" y="114" style="pointer-events:none">Airoli</text></g>
+<g class="pin" tabindex="0" role="button" data-i="2" aria-label="Thane Creek"><circle cx="372" cy="190" r="9"/><text x="426" y="194" style="pointer-events:none">Thane Creek</text></g>
+<g class="pin" tabindex="0" role="button" data-i="3" aria-label="Mahim Nature Park"><circle cx="222" cy="265" r="9"/><text x="40" y="269" style="pointer-events:none">Mahim Nature Park</text></g>
+<g class="pin" tabindex="0" role="button" data-i="4" aria-label="Sewri mudflats"><circle cx="340" cy="320" r="9"/><text x="356" y="324" style="pointer-events:none">Sewri</text></g>
+</svg>
+<div id="mi" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="quiz" class="rv">
+<h2>Test what you learned</h2>
+<div class="quiz"><p id="qq" style="margin-top:0;font-weight:600"></p><div id="qo"></div><p id="qs" aria-live="polite" style="margin-bottom:0"></p></div>
+</section>
+
+<section id="act">
+<h2>Take part</h2>
+<div class="act">
+<h3>Your mangrove checklist</h3>
+<label><input type="checkbox"> I will carry my own waste back instead of leaving it near creeks</label>
+<label><input type="checkbox"> I will join or organise a shoreline cleanup</label>
+<label><input type="checkbox"> I will tell two friends why mangroves matter</label>
+<label><input type="checkbox"> I will report dumping or cutting to the local authority or an NGO</label>
+<label><input type="checkbox"> I will visit a mangrove trail and learn the species</label>
+<div class="bar"><i id="fill"></i></div>
+<p id="count" style="margin:0">0 of 5 done</p>
+</div>
+
+<h3 style="margin-top:36px">Join a cleanup or awareness drive</h3>
+<form id="f">
+<input type="text" id="n" placeholder="Your name" required aria-label="Your name">
+<input type="email" id="e" placeholder="Email address" required aria-label="Email address">
+<select id="s" aria-label="How you want to help"><option>Shoreline cleanup</option><option>School awareness talk</option><option>Mangrove trail walk</option></select>
+<button type="submit">Send my sign-up</button>
+<div id="msg" aria-live="polite"></div>
+</form>
+
+<h3 style="margin-top:36px">Make a mangrove pledge</h3>
+<form id="pf">
+<input type="text" id="pn" placeholder="Your name" required aria-label="Your name for the pledge">
+<select id="pa" aria-label="Your pledge"><option>keep creeks and shores free of litter</option><option>tell others why mangroves matter</option><option>join a cleanup drive this year</option><option>report mangrove dumping or cutting</option></select>
+<button type="submit">Create my pledge</button>
+</form>
+<div id="cert" role="region" aria-label="Your pledge certificate"><h3>Mangrove Pledge</h3><p id="ct"></p><p id="cd" style="font-size:.9rem"></p><p style="font-size:.9rem">Roots of Mumbai</p><button type="button" id="pr" style="margin-top:10px">Print or save as PDF</button></div>
+</section>
+
+<section id="gallery" class="rv">
+<h2>Gallery</h2>
+<p>Illustrations drawn for this site.</p>
+<div class="gal" id="gal"><figure><svg viewBox="0 0 300 190" role="img" aria-label="Illustration of mangrove roots and crabs on exposed mud at low tide"><rect width="300" height="190" fill="#dbe9e3"/><circle cx="262" cy="26" r="14" fill="#f0c75e"/><g fill="#2f6b4f"><ellipse cx="90" cy="48" rx="55" ry="30"/><ellipse cx="210" cy="40" rx="60" ry="30"/></g><g stroke="#4a3a2c" stroke-width="5" fill="none" stroke-linecap="round"><path d="M90 70 V95 M90 95 C75 120 60 135 52 150 M90 95 C90 120 92 135 94 150 M90 95 C105 120 120 135 128 150"/><path d="M210 60 V88 M210 88 C195 115 180 135 172 150 M210 88 C212 120 214 135 216 150 M210 88 C225 115 240 135 248 150"/></g><rect y="150" width="300" height="40" fill="#5b4a3a"/><ellipse cx="140" cy="156" rx="9" ry="5" fill="#a04a2d"/><ellipse cx="38" cy="158" rx="8" ry="5" fill="#a04a2d"/><ellipse cx="268" cy="158" rx="8" ry="5" fill="#a04a2d"/></svg><figcaption>Low tide: mud exposed, crabs foraging</figcaption></figure><figure><svg viewBox="0 0 300 190" role="img" aria-label="Illustration of small fish sheltering among mangrove roots at high tide"><rect width="300" height="190" fill="#dbe9e3"/><g fill="#2f6b4f"><ellipse cx="90" cy="48" rx="55" ry="30"/><ellipse cx="210" cy="40" rx="60" ry="30"/></g><g stroke="#4a3a2c" stroke-width="5" fill="none" stroke-linecap="round"><path d="M90 70 V95 M90 95 C75 120 60 135 52 150 M90 95 C90 120 92 135 94 150 M90 95 C105 120 120 135 128 150"/><path d="M210 60 V88 M210 88 C195 115 180 135 172 150 M210 88 C212 120 214 135 216 150 M210 88 C225 115 240 135 248 150"/></g><rect y="150" width="300" height="40" fill="#5b4a3a"/><rect y="78" width="300" height="72" fill="#2d7c78" opacity=".6"/><g fill="#e8b84a"><path d="M110 120 q14 -9 28 0 q-14 9 -28 0z M150 134 q14 -9 28 0 q-14 9 -28 0z M60 128 q14 -9 28 0 q-14 9 -28 0z M232 118 q14 -9 28 0 q-14 9 -28 0z"/></g></svg><figcaption>High tide: young fish shelter in the roots</figcaption></figure><figure><svg viewBox="0 0 300 190" role="img" aria-label="Illustration of two flamingos wading in shallow water at sunset"><rect width="300" height="190" fill="#f6d9b0"/><circle cx="150" cy="95" r="38" fill="#f0a24a"/><rect y="150" width="300" height="40" fill="#2d7c78" opacity=".7"/><g><ellipse cx="110" cy="112" rx="22" ry="12" fill="#f08aa0"/><path d="M94 106 C70 92 80 62 74 50" stroke="#f08aa0" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M74 50 l-12 4" stroke="#3b2f2f" stroke-width="3" stroke-linecap="round"/><path d="M110 122 V150" stroke="#d96b86" stroke-width="3"/></g><g><ellipse cx="205" cy="104" rx="22" ry="12" fill="#f08aa0"/><path d="M189 98 C165 84 175 54 169 42" stroke="#f08aa0" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M169 42 l-12 4" stroke="#3b2f2f" stroke-width="3" stroke-linecap="round"/><path d="M205 114 V150" stroke="#d96b86" stroke-width="3"/></g></svg><figcaption>Flamingos feeding in shallow creek water</figcaption></figure><figure><svg viewBox="0 0 300 190" role="img" aria-label="Illustration of a mudskipper fish resting on mud beside pencil-like roots"><rect width="300" height="190" fill="#dbe9e3"/><rect y="120" width="300" height="70" fill="#5b4a3a"/><g stroke="#4a3a2c" stroke-width="5" stroke-linecap="round"><path d="M40 120 V84 M70 120 V94 M250 120 V80 M222 120 V92"/></g><ellipse cx="150" cy="112" rx="46" ry="14" fill="#7a8a6a"/><path d="M110 108 q-12 -4 -22 4 q10 8 22 2z" fill="#6a7a5a"/><path d="M148 98 q10 -16 28 -6 q-8 10 -28 6z" fill="#8fa07c"/><circle cx="184" cy="98" r="6" fill="#e8dcb0"/><circle cx="185" cy="98" r="2.5" fill="#222"/></svg><figcaption>A mudskipper resting on the mud</figcaption></figure></div>
+</section>
+
+<section id="about" class="rv">
+<h2>About this project</h2>
+<div class="about">
+<div><h3>Why it exists</h3><p>Mangroves protect Mumbai's coast, yet many residents never see them up close. This site turns that gap into short, friendly lessons.</p></div>
+<div><h3>What you can do</h3><p>Explore the tide, learn the species, test yourself, plan a visit, and take a personal pledge you can print.</p></div>
+<div><h3>How it is built</h3><p>Plain HTML, CSS and JavaScript in one file. No tracking, no sign-in, and it works offline once opened.</p></div>
+</div>
+</section>
+
+<footer>
+<p>A Community Engagement Project by Jitu Kumawat, University of Mumbai, Academic Year 2025-2026.</p>
+<p>Facts are general awareness points. Add your own field observations and interview notes in the report.</p>
+</footer>
+<div id="lb" role="dialog" aria-label="Enlarged photo"><img alt=""></div>
+<button id="top" type="button" aria-label="Back to top">Up</button>
+</div>
+<script>
+var t=document.getElementById('t'),w=document.getElementById('water'),fish=document.getElementById('fish'),crabs=document.getElementById('crabs'),cap=document.getElementById('cap');
+function tide(){var v=+t.value;w.setAttribute('y',285-(v/100)*155);
+fish.setAttribute('opacity',v>55?1:0);crabs.setAttribute('opacity',v<30?1:0);
+cap.textContent=v<30?'Low tide: the mud is exposed. Crabs and mudskippers feed on it while birds wade in.':v<70?'Rising tide: water creeps up the roots and carries food in from the sea.':'High tide: young fish shelter among the roots, safe from larger predators.';}
+t.addEventListener('input',tide);tide();
+var boxes=document.querySelectorAll('.act input');
+function upd(){var c=0;boxes.forEach(function(b){if(b.checked)c++});document.getElementById('fill').style.width=(c*20)+'%';document.getElementById('count').textContent=c+' of 5 done'+(c==5?'. Thank you for looking after the coast.':'');}
+boxes.forEach(function(b){b.addEventListener('change',upd)});
+document.getElementById('f').addEventListener('submit',function(ev){ev.preventDefault();
+var n=document.getElementById('n').value,e=document.getElementById('e').value,s=document.getElementById('s').value;
+var body='Name: '+n+'\nEmail: '+e+'\nInterested in: '+s;
+location.href='mailto:jitukumawat7774@gmail.com?subject='+encodeURIComponent('Mangrove drive sign-up')+'&body='+encodeURIComponent(body);
+document.getElementById('msg').textContent='Thanks, '+n+'. Your email app should open with your sign-up ready to send.';});
+
+document.documentElement.classList.add('js');
+var rv=document.querySelectorAll('.rv,#why,#threats,#spot,#act');rv.forEach(function(x){x.classList.add('rv')});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});rv.forEach(function(x){io.observe(x)});}else{rv.forEach(function(x){x.classList.add('in')})}
+var th=document.getElementById('th');
+try{var sv=localStorage.getItem('theme');if(sv)document.documentElement.setAttribute('data-theme',sv)}catch(e){}
+th.addEventListener('click',function(){var d=document.documentElement,dark=d.getAttribute('data-theme')?d.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;var n=dark?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}});
+var Q=[["What do dense mangrove roots do to storm waves?",["Slow them down","Speed them up","Turn them into whirlpools"],0],
+["Which fish climbs onto the mud at low tide and breathes through its skin?",["Pomfret","Mudskipper","Hilsa"],1],
+["What do the pencil-like roots of the grey mangrove do?",["Store drinking water","Hold up the leaves","Take in air from above the mud"],2],
+["Why does mangrove mud matter for the climate?",["It locks away carbon","It makes oxygen at night","It melts ice"],0],
+["Which of these harms mangroves?",["Guided nature walks","Dumping garbage and debris","Planting native saplings"],1]];
+var qi=0,sc=0,qq=document.getElementById('qq'),qo=document.getElementById('qo'),qs=document.getElementById('qs');
+function show(){qs.textContent='';qo.innerHTML='';if(qi>=Q.length){qq.textContent='You scored '+sc+' out of '+Q.length+'.';var b=document.createElement('button');b.type='button';b.textContent='Try again';b.onclick=function(){qi=0;sc=0;show()};qo.appendChild(b);return}
+qq.textContent=(qi+1)+'/'+Q.length+'. '+Q[qi][0];
+Q[qi][1].forEach(function(t,i){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=t;b.onclick=function(){
+Array.prototype.forEach.call(qo.children,function(c,j){c.disabled=true;if(j===Q[qi][2])c.classList.add('ok')});
+if(i===Q[qi][2]){sc++;qs.textContent='Correct.'}else{b.classList.add('no');qs.textContent='Not quite. The right answer is highlighted.'}
+var nx=document.createElement('button');nx.type='button';nx.textContent=qi==Q.length-1?'See score':'Next question';nx.onclick=function(){qi++;show()};qo.appendChild(nx);nx.focus()};qo.appendChild(b)})}
+show();
+var tp=document.getElementById('top');addEventListener('scroll',function(){tp.style.display=scrollY>600?'block':'none'});
+tp.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+try{var sd=JSON.parse(localStorage.getItem('chk')||'[]');boxes.forEach(function(b,i){b.checked=!!sd[i]});upd()}catch(e){}
+boxes.forEach(function(b){b.addEventListener('change',function(){try{localStorage.setItem('chk',JSON.stringify(Array.prototype.map.call(boxes,function(x){return x.checked})))}catch(e){}})});
+
+var pg=document.getElementById('pg');addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;pg.style.width=(h>0?scrollY/h*100:0)+'%'});
+document.querySelectorAll('.myth').forEach(function(m){var o=m.querySelector('span').textContent,l=m.querySelector('b');m.addEventListener('click',function(){var on=m.getAttribute('aria-pressed')==='true';m.setAttribute('aria-pressed',on?'false':'true');l.textContent=on?'Myth':'Fact';m.querySelector('span').textContent=on?o:m.dataset.f})});
+document.getElementById('pf').addEventListener('submit',function(ev){ev.preventDefault();var n=document.getElementById('pn').value.trim(),a=document.getElementById('pa').value;
+document.getElementById('ct').textContent=n+' promises to '+a+', to help protect the mangroves of Mumbai.';
+document.getElementById('cd').textContent=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+var c=document.getElementById('cert');c.style.display='block';c.scrollIntoView({behavior:'smooth',block:'center'})});
+document.getElementById('pr').addEventListener('click',function(){print()});
+
+var P=[["Gorai Creek","A quieter creek on the northern side of the city, with mangroves along the water. Check for any guided walks before going.","Gorai Creek Mumbai"],
+["Airoli","A creek-side area on the Navi Mumbai shore where mangroves line the water.","Airoli mangrove Navi Mumbai"],
+["Thane Creek","A long creek with wide mangrove belts and a protected flamingo area on its shores.","Thane Creek Flamingo Sanctuary"],
+["Mahim Nature Park","A green space beside a mangrove-lined creek in the heart of the city. A gentle place to start.","Mahim Nature Park Mumbai"],
+["Sewri mudflats","Known for flocks of flamingos in the cooler months. Keep a respectful distance from the birds.","Sewri mudflats Mumbai"]];
+var pins=document.querySelectorAll('.pin'),mi=document.getElementById('mi');
+function pick(i){pins.forEach(function(x){x.classList.remove('on')});pins[i].classList.add('on');var d=P[i];
+mi.innerHTML='';var h=document.createElement('h3');h.textContent=d[0];var t=document.createElement('p');t.textContent=d[1];var a=document.createElement('a');a.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(d[2]);a.target='_blank';a.rel='noopener';a.textContent='Open in Google Maps';mi.appendChild(h);mi.appendChild(t);mi.appendChild(a)}
+pins.forEach(function(x,i){x.addEventListener('click',function(){pick(i)});x.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(i)}})});
+mi.textContent='Select a pin to learn about the place.';
+var G=[]; /* Add your photos here, e.g. {src:"images/mangrove1.jpg",cap:"Mangrove roots at low tide"} */
+if(G.length){var gs=document.getElementById('gallery'),gl=document.getElementById('gal'),lb=document.getElementById('lb'),li=lb.querySelector('img');gs.hidden=false;
+G.forEach(function(g){var f=document.createElement('figure'),im=document.createElement('img');im.src=g.src;im.alt=g.cap;im.loading='lazy';im.onclick=function(){li.src=g.src;li.alt=g.cap;lb.style.display='flex'};var c=document.createElement('figcaption');c.textContent=g.cap;f.appendChild(im);f.appendChild(c);gl.appendChild(f)});
+lb.addEventListener('click',function(){lb.style.display='none'});addEventListener('keydown',function(e){if(e.key==='Escape')lb.style.display='none'})}
+</script>
+</body>
+</html>
